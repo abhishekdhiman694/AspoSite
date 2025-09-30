@@ -3282,6 +3282,56 @@
         `;
         document.head.appendChild(style);
     </script>
+    <!-- Floating Buttons -->
+<style>
+    .floating-buttons {
+        position: fixed;
+        right: 15px;
+        bottom: 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 1000;
+    }
+
+    .floating-buttons a {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        font-size: 22px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .call-btn {
+        background-color: #1cec05; /* Orange */
+    }
+
+    .whatsapp-btn {
+        background-color: #ff7607; /* WhatsApp green */
+    }
+
+    .floating-buttons a:hover {
+        transform: scale(1.1);
+        transition: 0.3s ease;
+    }
+</style>
+
+<div class="floating-buttons">
+    <!-- Call Button -->
+    <a href="tel:+919416300000" class="call-btn">
+        📞
+    </a>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919416300000" target="_blank" class="whatsapp-btn">
+        💬
+    </a>
+</div>
+
 </body>
 
 </html>
