@@ -2894,6 +2894,88 @@
 
 
     <script>
+
+        document.querySelector('.hero-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const button = this.querySelector('button[type="submit"]');
+    const originalText = button.textContent;
+    button.textContent = 'Sending...';
+    button.disabled = true;
+    
+    const formData = {
+        name: document.getElementById('hero-name').value,
+        email: document.getElementById('hero-email').value,
+        phone: document.getElementById('hero-phone').value,
+        city: document.getElementById('hero-city').value
+    };
+    
+    try {
+        const response = await fetch('/api/hero-enquiry', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            alert('✅ ' + data.message);
+            this.reset();
+        } else {
+            alert('❌ ' + data.message);
+        }
+    } catch (error) {
+        alert('❌ Network error. Please check your connection or call us directly at +91-9416250082');
+    } finally {
+        button.textContent = originalText;
+        button.disabled = false;
+    }
+});
+
+// Franchise Form Submission
+document.querySelector('.franchise-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const button = this.querySelector('button[type="submit"]');
+    const originalText = button.textContent;
+    button.textContent = 'Submitting Application...';
+    button.disabled = true;
+    
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        message: document.getElementById('message').value
+    };
+    
+    try {
+        const response = await fetch('/api/franchise-application', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            alert('✅ ' + data.message);
+            this.reset();
+        } else {
+            alert('❌ ' + data.message);
+        }
+    } catch (error) {
+        alert('❌ Network error. Please check your connection or call us directly at +91-9416250082');
+    } finally {
+        button.textContent = originalText;
+        button.disabled = false;
+    }
+});
+
        /* function animateCounters() {
             const counters = document.querySelectorAll('.stat-number');
 
@@ -2956,7 +3038,7 @@
             { name: 'Asetron', img: 'PAGE/images/asetron.jpg' },
             { name: 'Asetron Injection', img: 'PAGE/images/asetron_Injection.jpg' },
             { name: 'Asgab', img: 'PAGE/images/asgab.jpg' },
-            { name: 'Asipra Injection', img: 'PAGE/images/asipra_injection.jpg' },
+            { name: 'Asipra Injection', img: 'PAGE/images/asipra_Injection.jpg' },
             { name: 'Askuff-BR Syrup', img: 'PAGE/images/askuff-br_syrup.jpg' },
             { name: 'Askuffdx Syrup', img: 'PAGE/images/askuffdx_syrup.jpg' },
             { name: 'Asmecob-1500', img: 'PAGE/images/asmecob_injection.jpg' },
@@ -3282,6 +3364,56 @@
         `;
         document.head.appendChild(style);
     </script>
+    <!-- Floating Buttons -->
+<style>
+    .floating-buttons {
+        position: fixed;
+        right: 15px;
+        bottom: 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 1000;
+    }
+
+    .floating-buttons a {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        font-size: 22px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .call-btn {
+        background-color: #6a9bdb; /* Orange */
+    }
+
+    .whatsapp-btn {
+        background-color: #49b4a6; /* WhatsApp green */
+    }
+
+    .floating-buttons a:hover {
+        transform: scale(1.1);
+        transition: 0.3s ease;
+    }
+</style>
+
+<div class="floating-buttons">
+    <!-- Call Button -->
+    <a href="tel:9416250082" class="call-btn">
+        📞
+    </a>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/9416250082" target="_blank" class="whatsapp-btn">
+        💬
+    </a>
+</div>
+
 </body>
 
 </html>
